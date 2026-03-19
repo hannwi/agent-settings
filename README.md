@@ -1,2 +1,9 @@
 # agent-settings
-all settings to work with agents
+All settings to work with AI agents:
+- global settings
+- agent configs
+- mcp settings
+- agent skills
+- instructions, prompts
+- etc.
+
