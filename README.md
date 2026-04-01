@@ -8,7 +8,12 @@ All settings to work with AI agents:
 - instructions, prompts
 - etc.
 
-## Agents
+## Global Settings for Claude Code
+- `.claude/settings.json`
+    - Global setting file for Claude Code Premium Seat users.
+    - Copy the content of this file into `~/.claude/settings.json`.
+
+## Agent Settings
 
 List of agent settigns in `.claude/agents/`:
 
@@ -16,11 +21,13 @@ List of agent settigns in `.claude/agents/`:
 2. **code-agent** — Reads `.claude/plan.md` and implements the plan step by step.
 3. **test-runner-agent** — Runs the test suite and reports results after code-agent finishes.
 
-## Applying Agents
+## Scripts
+
+### Applying Agent Settings to ~/.claude/settings.json
 
 Use `scripts/apply_agents.sh` to copy agent configurations from this repository to your Claude agents directory.
 
-### Usage
+#### Usage
 
 ```
 bash scripts/apply_agents.sh [--local] [--project-root PATH] [--agents AGENT ...]
@@ -34,7 +41,7 @@ bash scripts/apply_agents.sh [--local] [--project-root PATH] [--agents AGENT ...
 
 If an agent with the same name already exists at the destination, the script will prompt you before overwriting.
 
-### Examples
+#### Examples
 
 ```bash
 # Apply all agents to the global ~/.claude/agents/ directory (default)

@@ -1,4 +1,39 @@
 #!/usr/bin/env bash
+# =============================================================================
+# apply_agents.sh
+#
+# 설명:
+#   이 저장소의 .claude/agents/ 디렉토리에 있는 Claude 에이전트 설정 파일(.md)을
+#   전역(~/.claude/agents/) 또는 특정 로컬 프로젝트(.claude/agents/)에 복사합니다.
+#
+# 동작 방식:
+#   1. 소스 디렉토리(<repo>/.claude/agents/)에서 에이전트 파일(.md)을 탐색합니다.
+#   2. --agents 옵션으로 특정 에이전트만 지정하거나, 생략 시 전체 에이전트를 적용합니다.
+#   3. 대상 경로에 이미 파일이 존재하면 덮어쓸지 여부를 사용자에게 확인합니다.
+#   4. 대상 디렉토리가 없으면 자동으로 생성합니다.
+#
+# 사용법:
+#   bash scripts/apply_agents.sh [--local] [--project-root PATH] [--agents AGENT ...]
+#
+# 옵션:
+#   --local               전역 디렉토리 대신 로컬 프로젝트에 적용
+#   --project-root PATH   로컬 프로젝트의 루트 경로 (--local 사용 시 필수)
+#   --agents AGENT ...    적용할 에이전트 이름 목록 (.md 확장자 제외, 생략 시 전체 적용)
+#   -h, --help            도움말 출력
+#
+# 예시:
+#   # 모든 에이전트를 전역으로 적용
+#   bash scripts/apply_agents.sh
+#
+#   # 특정 에이전트만 전역으로 적용
+#   bash scripts/apply_agents.sh --agents plan-agent code-agent
+#
+#   # 모든 에이전트를 로컬 프로젝트에 적용
+#   bash scripts/apply_agents.sh --local --project-root ~/projects/my-app
+#
+#   # 특정 에이전트를 로컬 프로젝트에 적용
+#   bash scripts/apply_agents.sh --local --project-root ~/projects/my-app --agents plan-agent
+# =============================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
