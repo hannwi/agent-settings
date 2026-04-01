@@ -158,7 +158,7 @@ for src in "${SOURCES[@]}"; do
     if [[ -f "$dest" ]]; then
         while true; do
             read -rp "Agent '$name' already exists. Overwrite? [y/N] " answer || answer=""
-            case "${answer,,}" in
+            case "$(echo "$answer" | tr '[:upper:]' '[:lower:]')" in
                 y|yes)
                     cp "$src" "$dest"
                     echo "  Applied: $name -> $dest"
