@@ -80,18 +80,18 @@ bash scripts/apply_agents.sh --local --project-root ~/projects/my-app --agents p
 
 ### apply_skills.sh
 
-`scripts/apply_skills.sh`를 사용해 이 저장소의 스킬을 Claude 스킬 디렉터리에 복사합니다.
+`scripts/apply_skills.sh`를 사용해 이 저장소의 스킬을 Claude/Codex 스킬 디렉터리에 복사합니다.
 
 #### Usage
 
 ```
-bash scripts/apply_skills.sh [--local] [--project-root PATH] [--skills SKILL ...]
+bash scripts/apply_skills.sh [--agent AGENT] [--project-root PATH] [--skills SKILL ...]
 ```
 
 | Option | Description |
 |---|---|
-| `--local` | 글로벌 `~/.claude/` 대신 로컬 프로젝트에 적용 |
-| `--project-root PATH` | 로컬 프로젝트의 루트 경로 (`--local` 사용 시 필수) |
+| `--agent AGENT` | 적용 대상 에이전트 (`claude`, `codex`, `all`). 기본값은 `all` |
+| `--project-root PATH` | 로컬 프로젝트의 루트 경로 (지정 시 로컬 프로젝트에 적용) |
 | `--skills SKILL ...` | 적용할 스킬 이름 (폴더명). 생략 시 전체 적용 |
 
 같은 이름의 스킬이 대상 위치에 이미 있으면 덮어쓰기 전에 확인을 요청합니다.
@@ -99,15 +99,24 @@ bash scripts/apply_skills.sh [--local] [--project-root PATH] [--skills SKILL ...
 #### Examples
 
 ```bash
-# 모든 스킬을 글로벌 ~/.claude/skills/ 디렉터리에 적용 (기본값)
+# 모든 스킬을 claude 및 codex 글로벌 디렉터리에 적용 (기본값)
 bash scripts/apply_skills.sh
 
-# 특정 스킬만 글로벌 적용
+# 특정 스킬을 claude 및 codex 글로벌 디렉터리에 적용
 bash scripts/apply_skills.sh --skills jira-cli wiki-cli
 
-# 모든 스킬을 로컬 프로젝트에 적용
-bash scripts/apply_skills.sh --local --project-root ~/projects/my-app
+# 모든 스킬을 claude 글로벌 디렉터리에 적용
+bash scripts/apply_skills.sh --agent claude
 
-# 특정 스킬을 로컬 프로젝트에 적용
-bash scripts/apply_skills.sh --local --project-root ~/projects/my-app --skills jira-cli
+# 모든 스킬을 codex 글로벌 디렉터리에 적용
+bash scripts/apply_skills.sh --agent codex
+
+# 특정 스킬을 로컬 프로젝트 claude 및 codex 디렉터리에 적용
+bash scripts/apply_skills.sh --project-root ~/projects/my-app --skills jira-cli wiki-cli
+
+# 특정 스킬을 로컬 프로젝트 claude 디렉터리에 적용
+bash scripts/apply_skills.sh --agent claude --project-root ~/projects/my-app --skills jira-cli wiki-cli
+
+# 특정 스킬을 로컬 프로젝트 codex 디렉터리에 적용
+bash scripts/apply_skills.sh --agent codex --project-root ~/projects/my-app --skills jira-cli wiki-cli
 ```
