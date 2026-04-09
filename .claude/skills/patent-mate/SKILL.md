@@ -120,6 +120,25 @@ flowchart TD
 ```
 ````
 
+**Mermaid 노드 여러 줄(multiline) 작성 규칙:**
+
+노드 레이블에 줄바꿈이 필요할 때 `\n`을 사용하지 않는다. 대신 노드 괄호 안에서 **실제 줄바꿈**을 사용한다. 가독성을 위해 줄바꿈된 줄에 들여쓰기를 적용한다.
+
+````markdown
+```mermaid
+flowchart TD
+    A[사용자 메시지] --> B[
+        사용자 상태 분석기
+        User State Analyzer
+    ]
+    B --> C{
+        응답 유형 결정
+        Response Type
+    }
+    C --> D[최종 응답 생성]
+```
+````
+
 ### 문서 구조
 
 ```markdown
